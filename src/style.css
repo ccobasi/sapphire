@@ -1,0 +1,82 @@
+
+@font-face {
+  font-family: "Satoshi";
+  src: url("./assets/fonts/Satoshi-Variable.ttf");
+}
+
+
+*{
+  box-sizing: border-box;
+  margin:0;
+  padding:0;
+  
+}
+
+
+:root{
+  --primary:#347AE2;
+  --secondary:#FFA321;
+  --background:#fefefe;
+  --card-background:#ffffff;
+  --dark:#333333;
+  --info-light:#D9D9D938;
+  --dark-2:#555555;
+  --grey:#7C8DB51A;
+  --info:#7C8DB5;
+  --modal-background:rgba(0,0,0,0.45);
+}
+
+:root {
+  font-family: "Satoshi", "Inter", system-ui, Avenir, Helvetica, Arial, sans-serif;
+  color-scheme: light dark;
+  color: var(--dark);
+  background-color:var(--background);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html, body{
+  margin: 0;
+  padding: 0;
+  overflow-x:hidden;
+}
+
+li{
+  list-style: none;
+}
+
+a{
+  text-decoration: none !important;
+}
+
+.btn-primary{
+  background-color:var(--primary) !important;
+}
+
+.btn-skinny{
+  border:1px solid var(--primary) !important;
+  color:var(--primary) !important;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root{
+    --primary:#347AE2;
+    --secondary:#FFA321;
+    --background:#2c2c2c;
+    --dark:#ffffff;
+    --card-background:#222222;
+    --info-light:#222222;
+    --dark-2:#cecece;
+    --grey:#eceff779;
+    --info:#7C8DB5;
+    --modal-background:rgba(0,0,0,0.25);
+  }
+  a:hover {
+    color: #747bff;
+  }
+  button {
+    background-color: #f9f9f9;
+  }
+}
