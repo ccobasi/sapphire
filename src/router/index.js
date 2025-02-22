@@ -11,7 +11,7 @@ import CompanyUnits from '../views/CompanyUnits.vue'
 import DepartmentUnits from '../views/DepartmentUnits.vue'
 import DesignationsRoles from '../views/DesignationsRoles.vue'
 
-import Dashboard from '../views/Dashboard.vue';
+import Dashboard from '../views/DashBoard.vue';
 import JobProfile from '../views/JobProfile.vue';
 import Login from '../views/Login.vue';
 import Employees from '../views/Employees.vue';
