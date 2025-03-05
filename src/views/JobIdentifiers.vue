@@ -2,12 +2,7 @@
   <div class="job-profile p-4">
     <h2 class="text-2xl font-semibold text-gray-800 mb-4">Job Profile</h2>
 
-    <button
-      class="add-profile-btn"
-      @click="openModal"
-      data-bs-toggle="modal"
-      data-bs-target="#addJobProfileModal"
-    >
+    <button class="add-profile-btn" @click="openModal" data-bs-toggle="modal" data-bs-target="#addJobProfileModal">
       Add Profile
     </button>
 
@@ -27,16 +22,10 @@
             <td class="px-4 py-2 text-sm text-gray-800">{{ identifier.jobCode }}</td>
             <td class="px-4 py-2 text-sm text-gray-800">{{ identifier.altTitle }}</td>
             <td class="px-4 py-2">
-              <button
-                class="btn btn-sm btn-outline-primary me-2 edit-btn"
-                @click="editIdentifier(index)"
-              >
+              <button class="btn btn-sm btn-outline-primary me-2 edit-btn" @click="editIdentifier(index)">
                 Edit
               </button>
-              <button
-                class="btn btn-sm btn-outline-danger delete-btn"
-                @click="deleteIdentifier(index)"
-              >
+              <button class="btn btn-sm btn-outline-danger delete-btn" @click="deleteIdentifier(index)">
                 Delete
               </button>
             </td>
@@ -45,36 +34,18 @@
       </table>
     </div>
 
-    <div
-      class="modal fade"
-      id="addJobProfileModal"
-      tabindex="-1"
-      aria-labelledby="addJobProfileModalLabel"
-      aria-hidden="true"
-    >
+    <div class="modal fade" id="addJobProfileModal" tabindex="-1" aria-labelledby="addJobProfileModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-lg modal-dialog-centered">
         <div class="modal-content">
           <div class="modal-header border-bottom border-gray-200">
             <h5 class="modal-title" id="addJobProfileModalLabel">
               {{ jobIdentifier.index === -1 ? "Add Job Profile" : "Edit Job Profile" }}
             </h5>
-            <button
-              type="button"
-              class="btn-close"
-              data-bs-dismiss="modal"
-              aria-label="Close"
-              @click="resetForm"
-            ></button>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" @click="resetForm"></button>
           </div>
           <div class="modal-body p-4">
             <div class="step-navigation mb-4">
-              <button
-                v-for="s in totalSteps"
-                :key="s"
-                @click="step = s"
-                :class="{ 'active': step === s }"
-                class="px-3 py-1 mr-2 border rounded"
-              >
+              <button v-for="s in totalSteps" :key="s" @click="step = s" :class="{ 'active': step === s }" class="px-3 py-1 mr-2 border rounded">
                 Step {{ s }}
               </button>
             </div>
@@ -84,48 +55,22 @@
                 <h4 class="text-lg font-semibold mb-3">Step 1: Identifiers</h4>
                 <div class="mb-3">
                   <label for="jobTitle" class="form-label fw-semibold text-gray-700">Job Title <span class="text-danger">*</span></label>
-                  <input
-                    type="text"
-                    id="jobTitle"
-                    class="form-control rounded-pill"
-                    v-model="formData.jobTitle"
-                    required
-                  />
+                  <input type="text" id="jobTitle" class="form-control rounded-pill" v-model="formData.jobTitle" required />
                 </div>
                 <div class="col-md-12 mb-3">
                   <label for="jobCode" class="form-label fw-semibold text-gray-700">Job Code</label>
-                  <input
-                    type="text"
-                    class="form-control rounded-pill"
-                    id="jobCode"
-                    :value="jobIdentifier.jobCode"
-                    readonly
-                  />
+                  <input type="text" class="form-control rounded-pill" id="jobCode" :value="jobIdentifier.jobCode" readonly />
                 </div>
                 <div v-for="(title, index) in formData.altJobTitles" :key="index" class="mb-3">
                   <label :for="'altTitle' + index" class="form-label fw-semibold text-gray-700">Alternative Job Title {{ index + 1 }}</label>
                   <div class="input-group">
-                    <input
-                      type="text"
-                      :id="'altTitle' + index"
-                      class="form-control rounded-pill"
-                      v-model="formData.altJobTitles[index]"
-                    />
-                    <button
-                      v-if="index > 0"
-                      type="button"
-                      class="btn btn-outline-danger rounded-pill ms-2"
-                      @click="removeAltTitle(index)"
-                    >
+                    <input type="text" :id="'altTitle' + index" class="form-control rounded-pill" v-model="formData.altJobTitles[index]" />
+                    <button v-if="index > 0" type="button" class="btn btn-outline-danger rounded-pill ms-2" @click="removeAltTitle(index)">
                       Remove
                     </button>
                   </div>
                 </div>
-                <button
-                  type="button"
-                  class="btn btn-outline-primary rounded-pill mt-2"
-                  @click="addAltTitle"
-                >
+                <button type="button" class="btn btn-outline-primary rounded-pill mt-2" @click="addAltTitle">
                   Add Alternative Title
                 </button>
               </div>
@@ -134,72 +79,33 @@
                 <h4 class="text-lg font-semibold mb-3">Step 2: Links to Structures</h4>
                 <div class="mb-3">
                   <label for="jobFunction" class="form-label fw-semibold text-gray-700">Job Function <span class="text-danger">*</span></label>
-                  <input
-                    type="text"
-                    id="jobFunction"
-                    class="form-control rounded-pill"
-                    v-model="formData.jobFunction"
-                    required
-                  />
+                  <input type="text" id="jobFunction" class="form-control rounded-pill" v-model="formData.jobFunction" required />
                 </div>
                 <div class="mb-3">
                   <label for="jobFamily" class="form-label fw-semibold text-gray-700">Job Family <span class="text-danger">*</span></label>
-                  <input
-                    type="text"
-                    id="jobFamily"
-                    class="form-control rounded-pill"
-                    v-model="formData.jobFamily"
-                    required
-                  />
+                  <input type="text" id="jobFamily" class="form-control rounded-pill" v-model="formData.jobFamily" required />
                 </div>
                 <div class="mb-3">
                   <label for="reportsTo" class="form-label fw-semibold text-gray-700">Job Reports To <span class="text-danger">*</span></label>
-                  <input
-                    type="text"
-                    id="reportsTo"
-                    class="form-control rounded-pill"
-                    v-model="formData.reportsTo"
-                    required
-                  />
+                  <input type="text" id="reportsTo" class="form-control rounded-pill" v-model="formData.reportsTo" required />
                 </div>
                 <div class="mb-3">
                   <label class="form-label fw-semibold text-gray-700">Jobs That Report To It</label>
                   <div v-for="(job, index) in formData.jobsThatReportTo" :key="'reportTo' + index" class="mb-3">
                     <div class="input-group">
-                      <input
-                        type="text"
-                        :id="'reportTo' + index"
-                        class="form-control rounded-pill"
-                        v-model="formData.jobsThatReportTo[index]"
-                        placeholder="Enter job title"
-                      />
-                      <button
-                        v-if="index > 0"
-                        type="button"
-                        class="btn btn-outline-danger rounded-pill ms-2"
-                        @click="removeJobReport(index)"
-                      >
+                      <input type="text" :id="'reportTo' + index" class="form-control rounded-pill" v-model="formData.jobsThatReportTo[index]" placeholder="Enter job title" />
+                      <button v-if="index > 0" type="button" class="btn btn-outline-danger rounded-pill ms-2" @click="removeJobReport(index)">
                         Remove
                       </button>
                     </div>
                   </div>
-                  <button
-                    type="button"
-                    class="btn btn-outline-primary rounded-pill mt-2"
-                    @click="addJobReport"
-                  >
+                  <button type="button" class="btn btn-outline-primary rounded-pill mt-2" @click="addJobReport">
                     Add Job
                   </button>
                 </div>
                 <div class="mb-3">
                   <label for="careerType" class="form-label fw-semibold text-gray-700">Career Type <span class="text-danger">*</span></label>
-                  <input
-                    type="text"
-                    id="careerType"
-                    class="form-control rounded-pill"
-                    v-model="formData.careerType"
-                    required
-                  />
+                  <input type="text" id="careerType" class="form-control rounded-pill" v-model="formData.careerType" required />
                 </div>
               </div>
 
@@ -207,31 +113,15 @@
                 <h4 class="text-lg font-semibold mb-3">Step 3: Contribution</h4>
                 <div class="mb-3">
                   <label for="levelOfWork" class="form-label fw-semibold text-gray-700">Level of Work <span class="text-danger">*</span></label>
-                  <input
-                    type="text"
-                    id="levelOfWork"
-                    class="form-control rounded-pill"
-                    v-model="formData.levelOfWork"
-                    required
-                  />
+                  <input type="text" id="levelOfWork" class="form-control rounded-pill" v-model="formData.levelOfWork" required />
                 </div>
                 <div class="mb-3">
                   <label for="jobPurpose" class="form-label fw-semibold text-gray-700">Job Purpose Description <span class="text-danger">*</span></label>
-                  <textarea
-                    id="jobPurpose"
-                    class="form-control rounded-lg"
-                    v-model="formData.jobPurpose"
-                    required
-                  ></textarea>
+                  <textarea id="jobPurpose" class="form-control rounded-lg" v-model="formData.jobPurpose" required></textarea>
                 </div>
                 <div class="mb-3">
                   <label for="jobCriticality" class="form-label fw-semibold text-gray-700">Job Criticality</label>
-                  <input
-                    type="text"
-                    id="jobCriticality"
-                    class="form-control rounded-pill"
-                    v-model="formData.jobCriticality"
-                  />
+                  <input type="text" id="jobCriticality" class="form-control rounded-pill" v-model="formData.jobCriticality" />
                 </div>
               </div>
 
@@ -240,32 +130,14 @@
                 <div v-for="(resp, index) in formData.responsibilities" :key="index" class="mb-3">
                   <div class="input-group">
                     <label :for="'outputGroup' + index" class="form-label fw-semibold text-gray-700">Output Group {{ index + 1 }}</label>
-                    <input
-                      type="text"
-                      :id="'outputGroup' + index"
-                      class="form-control rounded-pill mb-2"
-                      v-model="resp.outputGroup"
-                    />
-                    <textarea
-                      class="form-control rounded-lg"
-                      v-model="resp.outputsAndMeasures"
-                      placeholder="Outputs and Measures"
-                    ></textarea>
-                    <button
-                      v-if="index > 0"
-                      type="button"
-                      class="btn btn-outline-danger rounded-pill ms-2 mt-2"
-                      @click="removeResponsibility(index)"
-                    >
+                    <input type="text" :id="'outputGroup' + index" class="form-control rounded-pill mb-2" v-model="resp.outputGroup" />
+                    <textarea class="form-control rounded-lg" v-model="resp.outputsAndMeasures" placeholder="Outputs and Measures"></textarea>
+                    <button v-if="index > 0" type="button" class="btn btn-outline-danger rounded-pill ms-2 mt-2" @click="removeResponsibility(index)">
                       Remove
                     </button>
                   </div>
                 </div>
-                <button
-                  type="button"
-                  class="btn btn-outline-primary rounded-pill mt-2"
-                  @click="addResponsibility"
-                >
+                <button type="button" class="btn btn-outline-primary rounded-pill mt-2" @click="addResponsibility">
                   Add Responsibility
                 </button>
               </div>
@@ -274,96 +146,43 @@
                 <h4 class="text-lg font-semibold mb-3">Step 5: Requirements</h4>
                 <div class="mb-3">
                   <label for="min1" class="form-label fw-semibold text-gray-700">Minimum Qualification 1 <span class="text-danger">*</span></label>
-                  <input
-                    type="text"
-                    id="min1"
-                    class="form-control rounded-pill"
-                    v-model="formData.qualifications.min1"
-                    required
-                  />
+                  <input type="text" id="min1" class="form-control rounded-pill" v-model="formData.qualifications.min1" required />
                 </div>
                 <div class="mb-3">
                   <label for="min2" class="form-label fw-semibold text-gray-700">Minimum Qualification 2</label>
-                  <input
-                    type="text"
-                    id="min2"
-                    class="form-control rounded-pill"
-                    v-model="formData.qualifications.min2"
-                  />
+                  <input type="text" id="min2" class="form-control rounded-pill" v-model="formData.qualifications.min2" />
                 </div>
                 <div class="mb-3">
                   <label for="pref1" class="form-label fw-semibold text-gray-700">Preferred Qualification 1</label>
-                  <input
-                    type="text"
-                    id="pref1"
-                    class="form-control rounded-pill"
-                    v-model="formData.qualifications.pref1"
-                  />
+                  <input type="text" id="pref1" class="form-control rounded-pill" v-model="formData.qualifications.pref1" />
                 </div>
                 <div class="mb-3">
                   <label for="pref2" class="form-label fw-semibold text-gray-700">Preferred Qualification 2</label>
-                  <input
-                    type="text"
-                    id="pref2"
-                    class="form-control rounded-pill"
-                    v-model="formData.qualifications.pref2"
-                  />
+                  <input type="text" id="pref2" class="form-control rounded-pill" v-model="formData.qualifications.pref2" />
                 </div>
                 <div v-for="(exp, index) in formData.experiences" :key="index" class="mb-4">
                   <h5 class="text-md font-semibold mb-2">Experience {{ index + 1 }} <span v-if="index === 0" class="text-danger">*</span></h5>
                   <div class="mb-3">
                     <label :for="'jobFunction' + index" class="form-label fw-semibold text-gray-700">Job Function</label>
-                    <input
-                      type="text"
-                      :id="'jobFunction' + index"
-                      class="form-control rounded-pill"
-                      v-model="exp.jobFunction"
-                      :required="index === 0"
-                    />
+                    <input type="text" :id="'jobFunction' + index" class="form-control rounded-pill" v-model="exp.jobFunction" :required="index === 0" />
                   </div>
                   <div class="mb-3">
                     <label :for="'jobFamily' + index" class="form-label fw-semibold text-gray-700">Job Family</label>
-                    <input
-                      type="text"
-                      :id="'jobFamily' + index"
-                      class="form-control rounded-pill"
-                      v-model="exp.jobFamily"
-                      :required="index === 0"
-                    />
+                    <input type="text" :id="'jobFamily' + index" class="form-control rounded-pill" v-model="exp.jobFamily" :required="index === 0" />
                   </div>
                   <div class="mb-3">
                     <label :for="'years' + index" class="form-label fw-semibold text-gray-700">Years</label>
-                    <input
-                      type="number"
-                      :id="'years' + index"
-                      class="form-control rounded-pill"
-                      v-model="exp.years"
-                      :required="index === 0"
-                    />
+                    <input type="number" :id="'years' + index" class="form-control rounded-pill" v-model="exp.years" :required="index === 0" />
                   </div>
                   <div class="mb-3">
                     <label :for="'description' + index" class="form-label fw-semibold text-gray-700">Description</label>
-                    <textarea
-                      :id="'description' + index"
-                      class="form-control rounded-lg"
-                      v-model="exp.description"
-                      :required="index === 0"
-                    ></textarea>
+                    <textarea :id="'description' + index" class="form-control rounded-lg" v-model="exp.description" :required="index === 0"></textarea>
                   </div>
-                  <button
-                    v-if="index > 0"
-                    type="button"
-                    class="btn btn-outline-danger rounded-pill mt-2"
-                    @click="removeExperience(index)"
-                  >
+                  <button v-if="index > 0" type="button" class="btn btn-outline-danger rounded-pill mt-2" @click="removeExperience(index)">
                     Remove
                   </button>
                 </div>
-                <button
-                  type="button"
-                  class="btn btn-outline-primary rounded-pill mt-2"
-                  @click="addExperience"
-                >
+                <button type="button" class="btn btn-outline-primary rounded-pill mt-2" @click="addExperience">
                   Add Experience
                 </button>
               </div>
@@ -376,34 +195,14 @@
                   <div v-for="(beh, index) in formData.competencies.behavioural" :key="'behavioural' + index" class="mb-3">
                     <h5 v-if="index > 0" class="text-md font-semibold">Additional Competency {{ index + 1 }}</h5>
                     <div class="input-group">
-                      <input
-                        type="text"
-                        class="form-control rounded-pill"
-                        v-model="beh.label"
-                        placeholder="Label"
-                        :required="index < 2"
-                      />
-                      <textarea
-                        class="form-control rounded-lg mt-2"
-                        v-model="beh.description"
-                        placeholder="Description"
-                        :required="index < 2"
-                      ></textarea>
-                      <button
-                        v-if="index > 0"
-                        type="button"
-                        class="btn btn-outline-danger rounded-pill ms-2 mt-2"
-                        @click="removeBehaviouralCompetency(index)"
-                      >
+                      <input type="text" class="form-control rounded-pill" v-model="beh.label" placeholder="Label" :required="index < 2" />
+                      <textarea class="form-control rounded-lg mt-2" v-model="beh.description" placeholder="Description" :required="index < 2"></textarea>
+                      <button v-if="index > 0" type="button" class="btn btn-outline-danger rounded-pill ms-2 mt-2" @click="removeBehaviouralCompetency(index)">
                         Remove
                       </button>
                     </div>
                   </div>
-                  <button
-                    type="button"
-                    class="btn btn-outline-primary rounded-pill mt-2"
-                    @click="addBehaviouralCompetency"
-                  >
+                  <button type="button" class="btn btn-outline-primary rounded-pill mt-2" @click="addBehaviouralCompetency">
                     Add Behavioral Competency
                   </button>
                 </div>
@@ -413,41 +212,15 @@
                   <div v-for="(tech, index) in formData.competencies.technical" :key="'technical' + index" class="mb-3">
                     <h5 v-if="index > 0" class="text-md font-semibold">Additional Competency {{ index + 1 }}</h5>
                     <div class="input-group">
-                      <input
-                        type="text"
-                        class="form-control rounded-pill"
-                        v-model="tech.label"
-                        placeholder="Label"
-                        :required="index < 2"
-                      />
-                      <textarea
-                        class="form-control rounded-lg mt-2"
-                        v-model="tech.description"
-                        placeholder="Description"
-                        :required="index < 2"
-                      ></textarea>
-                      <input
-                        type="text"
-                        class="form-control rounded-pill mt-2"
-                        v-model="tech.level"
-                        placeholder="Proficiency Level"
-                        :required="index < 2"
-                      />
-                      <button
-                        v-if="index > 0"
-                        type="button"
-                        class="btn btn-outline-danger rounded-pill ms-2 mt-2"
-                        @click="removeTechnicalCompetency(index)"
-                      >
+                      <input type="text" class="form-control rounded-pill" v-model="tech.label" placeholder="Label" :required="index < 2" />
+                      <textarea class="form-control rounded-lg mt-2" v-model="tech.description" placeholder="Description" :required="index < 2"></textarea>
+                      <input type="text" class="form-control rounded-pill mt-2" v-model="tech.level" placeholder="Proficiency Level" :required="index < 2" />
+                      <button v-if="index > 0" type="button" class="btn btn-outline-danger rounded-pill ms-2 mt-2" @click="removeTechnicalCompetency(index)">
                         Remove
                       </button>
                     </div>
                   </div>
-                  <button
-                    type="button"
-                    class="btn btn-outline-primary rounded-pill mt-2"
-                    @click="addTechnicalCompetency"
-                  >
+                  <button type="button" class="btn btn-outline-primary rounded-pill mt-2" @click="addTechnicalCompetency">
                     Add Technical Competency
                   </button>
                 </div>
@@ -457,38 +230,15 @@
                   <div v-for="(lead, index) in formData.competencies.leadership" :key="'leadership' + index" class="mb-3">
                     <h5 v-if="index > 0" class="text-md font-semibold">Additional Competency {{ index + 1 }}</h5>
                     <div class="input-group">
-                      <input
-                        type="text"
-                        class="form-control rounded-pill"
-                        v-model="lead.label"
-                        placeholder="Label"
-                      />
-                      <textarea
-                        class="form-control rounded-lg mt-2"
-                        v-model="lead.description"
-                        placeholder="Description"
-                      ></textarea>
-                      <input
-                        type="text"
-                        class="form-control rounded-pill mt-2"
-                        v-model="lead.levelDescription"
-                        placeholder="Proficiency Level Description"
-                      />
-                      <button
-                        v-if="index > 0"
-                        type="button"
-                        class="btn btn-outline-danger rounded-pill ms-2 mt-2"
-                        @click="removeLeadershipCompetency(index)"
-                      >
+                      <input type="text" class="form-control rounded-pill" v-model="lead.label" placeholder="Label" />
+                      <textarea class="form-control rounded-lg mt-2" v-model="lead.description" placeholder="Description"></textarea>
+                      <input type="text" class="form-control rounded-pill mt-2" v-model="lead.levelDescription" placeholder="Proficiency Level Description" />
+                      <button v-if="index > 0" type="button" class="btn btn-outline-danger rounded-pill ms-2 mt-2" @click="removeLeadershipCompetency(index)">
                         Remove
                       </button>
                     </div>
                   </div>
-                  <button
-                    type="button"
-                    class="btn btn-outline-primary rounded-pill mt-2"
-                    @click="addLeadershipCompetency"
-                  >
+                  <button type="button" class="btn btn-outline-primary rounded-pill mt-2" @click="addLeadershipCompetency">
                     Add Leadership Competency
                   </button>
                 </div>
@@ -500,35 +250,14 @@
                   <label class="form-label fw-semibold text-gray-700">Direct Reports</label>
                   <div v-for="(direct, index) in formData.directReports" :key="'direct' + index" class="mb-3">
                     <div class="input-group">
-                      <input
-                        type="text"
-                        class="form-control rounded-pill mb-2"
-                        v-model="direct.title"
-                        placeholder="Job Title"
-                        required
-                      />
-                      <input
-                        type="number"
-                        class="form-control rounded-pill mb-2 ms-2"
-                        v-model="direct.number"
-                        placeholder="Number"
-                        required
-                      />
-                      <button
-                        v-if="index > 0"
-                        type="button"
-                        class="btn btn-outline-danger rounded-pill ms-2 mt-2"
-                        @click="removeDirectReport(index)"
-                      >
+                      <input type="text" class="form-control rounded-pill mb-2" v-model="direct.title" placeholder="Job Title" required />
+                      <input type="number" class="form-control rounded-pill mb-2 ms-2" v-model="direct.number" placeholder="Number" required />
+                      <button v-if="index > 0" type="button" class="btn btn-outline-danger rounded-pill ms-2 mt-2" @click="removeDirectReport(index)">
                         Remove
                       </button>
                     </div>
                   </div>
-                  <button
-                    type="button"
-                    class="btn btn-outline-primary rounded-pill mt-2"
-                    @click="addDirectReport"
-                  >
+                  <button type="button" class="btn btn-outline-primary rounded-pill mt-2" @click="addDirectReport">
                     Add Direct Report
                   </button>
                 </div>
@@ -536,60 +265,27 @@
                   <label class="form-label fw-semibold text-gray-700">Indirect Reports</label>
                   <div v-for="(indirect, index) in formData.indirectReports" :key="'indirect' + index" class="mb-3">
                     <div class="input-group">
-                      <input
-                        type="text"
-                        class="form-control rounded-pill mb-2"
-                        v-model="indirect.family"
-                        placeholder="Job Family"
-                      />
-                      <input
-                        type="number"
-                        class="form-control rounded-pill mb-2 ms-2"
-                        v-model="indirect.number"
-                        placeholder="Number"
-                      />
-                      <button
-                        v-if="index > 0"
-                        type="button"
-                        class="btn btn-outline-danger rounded-pill ms-2 mt-2"
-                        @click="removeIndirectReport(index)"
-                      >
+                      <input type="text" class="form-control rounded-pill mb-2" v-model="indirect.family" placeholder="Job Family" />
+                      <input type="number" class="form-control rounded-pill mb-2 ms-2" v-model="indirect.number" placeholder="Number" />
+                      <button v-if="index > 0" type="button" class="btn btn-outline-danger rounded-pill ms-2 mt-2" @click="removeIndirectReport(index)">
                         Remove
                       </button>
                     </div>
                   </div>
-                  <button
-                    type="button"
-                    class="btn btn-outline-primary rounded-pill mt-2"
-                    @click="addIndirectReport"
-                  >
+                  <button type="button" class="btn btn-outline-primary rounded-pill mt-2" @click="addIndirectReport">
                     Add Indirect Report
                   </button>
                 </div>
               </div>
 
               <div class="d-flex justify-content-between mt-4">
-                <button
-                  type="button"
-                  class="btn btn-secondary rounded-pill px-3 py-2"
-                  @click="goToPreviousStep"
-                  :disabled="step === 1"
-                >
+                <button type="button" class="btn btn-secondary rounded-pill px-3 py-2" @click="goToPreviousStep" :disabled="step === 1">
                   Back
                 </button>
-                <button
-                  type="button"
-                  class="btn btn-primary rounded-pill px-3 py-2"
-                  @click="goToNextStep"
-                  :disabled="step === totalSteps"
-                >
+                <button type="button" class="btn btn-primary rounded-pill px-3 py-2" @click="goToNextStep" :disabled="step === totalSteps">
                   Next
                 </button>
-                <button
-                  v-if="step === totalSteps"
-                  type="submit"
-                  class="btn btn-success rounded-pill px-3 py-2"
-                >
+                <button v-if="step === totalSteps" type="submit" class="btn btn-success rounded-pill px-3 py-2">
                   Submit
                 </button>
               </div>
@@ -907,7 +603,7 @@ onMounted(() => {
   cursor: pointer;
   width: 190px;
   height: 50px;
-  font-family: 'Satoshi', sans-serif;
+  font-family: "Satoshi", sans-serif;
   font-size: 14px;
   font-weight: 500;
 }
@@ -923,7 +619,7 @@ table {
 }
 
 thead th {
-  font-family: 'Satoshi', sans-serif;
+  font-family: "Satoshi", sans-serif;
   font-size: 14px;
   font-weight: 700;
   line-height: 27px;
@@ -934,7 +630,7 @@ thead th {
 }
 
 tbody td {
-  font-family: 'Satoshi', sans-serif;
+  font-family: "Satoshi", sans-serif;
   font-size: 14px;
   font-weight: 400;
   line-height: 21.6px;
@@ -945,7 +641,7 @@ tbody td {
 
 .btn-outline-primary,
 .btn-outline-danger {
-  font-family: 'Satoshi', sans-serif;
+  font-family: "Satoshi", sans-serif;
   font-size: 12px;
   font-weight: 500;
   padding: 5px 10px;
@@ -984,14 +680,14 @@ tbody td {
 }
 
 .modal-title {
-  font-family: 'Satoshi', sans-serif;
+  font-family: "Satoshi", sans-serif;
   font-size: 1.25rem;
   font-weight: 500;
   color: #333333;
 }
 
 .form-label {
-  font-family: 'Satoshi', sans-serif;
+  font-family: "Satoshi", sans-serif;
   font-size: 0.875rem;
   font-weight: 500;
 }
@@ -1000,7 +696,7 @@ tbody td {
 .form-select {
   border: 1px solid #d1d5db;
   border-radius: 8px;
-  font-family: 'Satoshi', sans-serif;
+  font-family: "Satoshi", sans-serif;
   font-size: 0.875rem;
 }
 
@@ -1018,7 +714,7 @@ tbody td {
 .btn-primary,
 .btn-success,
 .btn-secondary {
-  font-family: 'Satoshi', sans-serif;
+  font-family: "Satoshi", sans-serif;
   font-size: 0.875rem;
   font-weight: 500;
   border-radius: 8px;
@@ -1110,3 +806,4 @@ tbody td {
   }
 }
 </style>
+

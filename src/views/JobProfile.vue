@@ -258,6 +258,10 @@ p {
   color: #fff;
 }
 
+thead {
+  border-bottom: none !important;
+}
+
 thead th {
   font-family: "Satoshi", sans-serif;
   font-size: 14px;
